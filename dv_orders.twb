@@ -432,13 +432,72 @@
       </column>
       <column caption='Unit Price' datatype='real' name='[UNIT_PRICE]' role='measure' type='quantitative'>
       </column>
-      <layout dim-ordering='alphabetic' dim-percentage='0.514563' measure-ordering='alphabetic' measure-percentage='0.451456' show-structure='true' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.533981' measure-ordering='alphabetic' measure-percentage='0.432039' show-structure='true' />
       <semantic-values>
         <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
       </semantic-values>
     </datasource>
   </datasources>
   <worksheets>
+    <worksheet name='Reproduced_Plots'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='ORDERS+ (DV_ORDERS)' name='oracle.42089.436643009300' />
+          </datasources>
+          <datasource-dependencies datasource='oracle.42089.436643009300'>
+            <column caption='Customer State' datatype='string' name='[CUSTOMER_STATE]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Order Date' datatype='datetime' name='[ORDER_DATE]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='Shipped Date' datatype='datetime' name='[SHIPPED_DATE]' role='dimension' type='ordinal'>
+            </column>
+            <column caption='Unit Price' datatype='real' name='[UNIT_PRICE]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[CUSTOMER_STATE]' derivation='None' name='[none:CUSTOMER_STATE:nk]' pivot='key' type='nominal' />
+            <column-instance column='[UNIT_PRICE]' derivation='Sum' name='[sum:UNIT_PRICE:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[ORDER_DATE]' derivation='Year-Trunc' name='[tyr:ORDER_DATE:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[SHIPPED_DATE]' derivation='Year-Trunc' name='[tyr:SHIPPED_DATE:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <sort class='computed' column='[oracle.42089.436643009300].[none:CUSTOMER_STATE:nk]' direction='ASC' using='[oracle.42089.436643009300].[sum:UNIT_PRICE:ok]'>
+          </sort>
+          <aggregation value='false' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[oracle.42089.436643009300].[sum:UNIT_PRICE:ok]' />
+            </encodings>
+          </pane>
+          <pane id='1' x-axis-name='[oracle.42089.436643009300].[tyr:SHIPPED_DATE:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[oracle.42089.436643009300].[sum:UNIT_PRICE:ok]' />
+            </encodings>
+          </pane>
+          <pane id='2' x-axis-name='[oracle.42089.436643009300].[tyr:ORDER_DATE:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[oracle.42089.436643009300].[sum:UNIT_PRICE:ok]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[oracle.42089.436643009300].[none:CUSTOMER_STATE:nk]</rows>
+        <cols>([oracle.42089.436643009300].[tyr:SHIPPED_DATE:qk] + [oracle.42089.436643009300].[tyr:ORDER_DATE:qk])</cols>
+      </table>
+    </worksheet>
     <worksheet name='Sheet 1'>
       <table>
         <view>
@@ -463,7 +522,7 @@
   </worksheets>
   <windows>
     <window class='schema' source-height='-1' />
-    <window auto-hidden='0' class='worksheet' maximized='1' name='Sheet 1'>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Sheet 1'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -482,6 +541,34 @@
         </edge>
       </cards>
     </window>
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Reproduced_Plots'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='1' param='[oracle.42089.436643009300].[sum:UNIT_PRICE:ok]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[oracle.42089.436643009300].[sum:UNIT_PRICE:ok]</field>
+          <field>[oracle.42089.436643009300].[tyr:SHIPPED_DATE:qk]</field>
+          <field>[oracle.42089.436643009300].[yr:ORDER_DATE:ok]</field>
+          <field>[oracle.42089.436643009300].[yr:SHIPPED_DATE:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
   </windows>
   <thumbnails>
     <thumbnail height='144' name='Sheet 1' width='174'>
@@ -495,6 +582,94 @@
       STIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuScYlybgkGZck
       45JkXJKMS5JxSTIuScYlybgkGZck45JkXJKMS5JxSTIuSRePYgUc7kJNEQAAAABJRU5ErkJg
       gg==
+    </thumbnail>
+    <thumbnail height='192' name='Reproduced_Plots' width='192'>
+      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
+      EWTkdetnAAAAAElFTkSuQmCC
     </thumbnail>
   </thumbnails>
 </workbook>
